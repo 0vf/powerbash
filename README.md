@@ -52,5 +52,5 @@ PROMPT_COMMAND=$(unseperated_powerline_dark1)
 
 
 # Recommended
-[ble.sh](https://github.com/akinomyoga/ble.sh) | Syntax highlighting, advanced auto completion (if combined with bash-completion)
+[ble.sh](https://github.com/akinomyoga/ble.sh) | Syntax highlighting, advanced auto completion (if combined with bash-completion) <br />
 [bash-completion](https://github.com/scop/bash-completion) | Advanced and programmable completion for bash
