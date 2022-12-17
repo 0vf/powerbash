@@ -14,28 +14,35 @@ fc() {
 }
 PROMPT_DIRTRIM=4
 # Distro checker (for the distro's logo in the prompt)
-. /etc/os-release 2>/dev/null
-case "$NAME" in
-	"Arch Linux") export distro_logo="";;
-	"Artix Linux") export distro_logo="";;
-	"Ubuntu") export distro_logo="";;
-	"Manjaro Linux") export distro_logo="";;
-	"Alpine Linux") export distro_logo="";;
-	"Debian GNU/Linux") export distro_logo="";;
-	"Devuan GNU/Linux") export distro_logo="";;
-	"AlmaLinux") export distro_logo="";;
-	"Fedora") export distro_logo="";;
-	"Gentoo") export distro_logo="";;
-	"CentOS Linux") export distro_logo="";;
-	"elementary OS") export distro_logo="";;
-	"Rocky Linux") export distro_logo="";;
-	"Kali GNU/Linux") export distro_logo="";;
-	"Void Linux") export distro_logo="";;
-	"FreeBSD") export distro_logo="";;
-	"OpenBSD") export distro_logo="";;
-	*) export distro_logo="";;
-esac
+. /etc/os-release 2>/dev/null || MACOS_OPENBSD_CHECK
+LINUX_FREEBSD_LOGO(){
+	case "$NAME" in
+		"Arch Linux") export distro_logo="";;
+		"Artix Linux") export distro_logo="";;
+		"Ubuntu") export distro_logo="";;
+		"Manjaro Linux") export distro_logo="";;
+		"Alpine Linux") export distro_logo="";;
+		"Debian GNU/Linux") export distro_logo="";;
+		"Devuan GNU/Linux") export distro_logo="";;
+		"AlmaLinux") export distro_logo="";;
+		"Fedora") export distro_logo="";;
+		"Gentoo") export distro_logo="";;
+		"CentOS Linux") export distro_logo="";;
+		"elementary OS") export distro_logo="";;
+		"Rocky Linux") export distro_logo="";;
+		"Kali GNU/Linux") export distro_logo="";;
+		"Void Linux") export distro_logo="";;
+		"FreeBSD") export distro_logo="";;
+		"OpenBSD") export distro_logo="";;
+		"Darwin") export distro_logo="";;
+		*) export distro_logo="";;
+	esac
+}
 
+MACOS_OPENBSD_CHECK() {
+	NAME=$(uname)
+	LINUX_FREEBSD_LOGO
+}
 # Styles!
 #
 # The style to be used will be decided by the installer
