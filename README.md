@@ -11,7 +11,7 @@ To install, start by cloning this repository:
 ```bash
 git clone https://github.com/z-ffqq/powerbash.git
 ```
-Proceed by moving `powerbash/powerbash` to any directory you'd like (or simply keep it):
+Proceed by moving `powerbash/powerbash.bash-theme` to any directory you'd like (or simply keep it):
 ```bash
 mv powerbash/powerbash ~/Documents
 ```
