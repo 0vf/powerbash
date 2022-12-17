@@ -50,3 +50,7 @@ PROMPT_COMMAND=$(unseperated_powerline_dark1)
 * Powerline Minimalist (No icons)
   - `nologo_minimalist_powerline` <br /> <br />
 
+
+# Recommended
+[ble.sh](https://github.com/akinomyoga/ble.sh) | Syntax highlighting, advanced auto completion (if combined with bash-completion)
+[bash-completion](https://github.com/scop/bash-completion) | Advanced and programmable completion for bash
