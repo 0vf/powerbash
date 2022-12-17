@@ -14,7 +14,7 @@ fc() {
 }
 PROMPT_DIRTRIM=4
 # Distro checker (for the distro's logo in the prompt)
-. /etc/os-release 2>/dev/null || MACOS_OPENBSD_CHECK
+. /etc/os-release 2>/dev/null && LINUX_FREEBSD_LOGO || MACOS_OPENBSD_CHECK
 LINUX_FREEBSD_LOGO(){
 	case "$NAME" in
 		"Arch Linux") export distro_logo="";;
