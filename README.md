@@ -1,6 +1,7 @@
 # powerbash
 Bash theme made to look like powerlevel10k <br />
-![image](https://user-images.githubusercontent.com/36998498/208265770-34f1c1d8-c3c1-45c0-8117-c2ed764cf345.png)
+![image](https://user-images.githubusercontent.com/36998498/208265770-34f1c1d8-c3c1-45c0-8117-c2ed764cf345.png) <br />
+*(image above is an example of unseperated_powerline_dark1)*
 ## Features
 * Git integration
 * Error code
