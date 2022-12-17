@@ -13,13 +13,16 @@ git clone https://github.com/z-ffqq/powerbash.git
 ```
 Proceed by moving `powerbash/powerbash.bash-theme` to any directory you'd like (or simply keep it):
 ```bash
-mv powerbash/powerbash ~/Documents
+mv powerbash/powerbash.bash-theme ~/Documents
 ```
 Source the script in your `~/.bashrc` file:
 ```bash
-source ~/Documents/powerbash
+source ~/Documents/powerbash.bash-theme
 ```
-Then, read what's below
+Then, put one of the values below in `PROMPT_COMMAND`:
+```bash
+PROMPT_COMMAND=$(unseperated_powerline_dark1)
+```
 ### Types:
 (nologo means the same variant of the theme without a distro or git branch logo)
 * `unseperated_powerline_dark`
@@ -45,7 +48,3 @@ Then, read what's below
 * `minimalist_powerline`
 * `nologo_minimalist_powerline` <br /> <br />
 
-Put one of the values above in `PROMPT_COMMAND` as shown below:
-```bash
-PROMPT_COMMAND=$(unseperated_powerline_dark1)
-```
