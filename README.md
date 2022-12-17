@@ -25,26 +25,28 @@ PROMPT_COMMAND=$(unseperated_powerline_dark1)
 ```
 ### Types:
 (nologo means the same variant of the theme without a distro or git branch logo)
-* `unseperated_powerline_dark`
+* Powerline Unseperated Colors (Dark, icons)
   - `unseperated_powerline_dark1`
   - `unseperated_powerline_dark2`
   - `unseperated_powerline_dark3`
   - `unseperated_powerline_dark4`
-* `nologo_unseperated_powerline_dark`
+* Powerline Seperated Colors (Dark, no icons)
   - `nologo_unseperated_powerline_dark1`
   - `nologo_unseperated_powerline_dark2`
   - `nologo_unseperated_powerline_dark3`
   - `nologo_unseperated_powerline_dark4`
-* `seperated_powerline_dark`
+* Powerline Seperated Colors (Dark, icons)
   - `seperated_powerline_dark1`
   - `seperated_powerline_dark2`
   - `seperated_powerline_dark3`
   - `seperated_powerline_dark4`
-* `nologo_seperated_powerline_dark`
+* Powerline Seperated Colors (Dark, no icons)
   - `nologo_seperated_powerline_dark1`
   - `nologo_seperated_powerline_dark2`
   - `nologo_seperated_powerline_dark3`
   - `nologo_seperated_powerline_dark4`
-* `minimalist_powerline`
-* `nologo_minimalist_powerline` <br /> <br />
+* Powerline Minimalist (Icons)
+  - `minimalist_powerline`
+* Powerline Minimalist (No icons)
+  - `nologo_minimalist_powerline` <br /> <br />
 
