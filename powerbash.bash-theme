@@ -12,6 +12,7 @@ bc() {
 fc() {
     echo "\\[\\033[38;5;"$1"m\\]"
 }
+PROMPT_DIRTRIM=4
 # Distro checker (for the distro's logo in the prompt)
 . /etc/os-release 2>/dev/null
 case "$NAME" in
