@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Bash theme that looks like powerlevel10k
-
 # function to get git branch for ps1 (made as an alternative to git-prompt.sh)
 __git_ps1() {
 	git branch 2> /dev/null | sed 's/*//g'
@@ -14,35 +13,219 @@ fc() {
 }
 PROMPT_DIRTRIM=4
 # Distro checker (for the distro's logo in the prompt)
-LINUX_FREEBSD_LOGO(){
-	case "$NAME" in
-		"Arch Linux") export distro_logo="";;
-		"Artix Linux") export distro_logo="";;
-		"Ubuntu") export distro_logo="";;
-		"Manjaro Linux") export distro_logo="";;
-		"Alpine Linux") export distro_logo="";;
-		"Debian GNU/Linux") export distro_logo="";;
-		"Devuan GNU/Linux") export distro_logo="";;
-		"AlmaLinux") export distro_logo="";;
-		"Fedora") export distro_logo="";;
-		"Gentoo") export distro_logo="";;
-		"CentOS Linux") export distro_logo="";;
-		"elementary OS") export distro_logo="";;
-		"Rocky Linux") export distro_logo="";;
-		"Kali GNU/Linux") export distro_logo="";;
-		"Void Linux") export distro_logo="";;
-		"FreeBSD") export distro_logo="";;
-		"OpenBSD") export distro_logo="";;
-		"Darwin") export distro_logo="";;
-		*) export distro_logo="";;
+. /etc/os-release 2>/dev/null || NAME=$(uname)
+case "$NAME" in
+	"Arch Linux") export distro_logo="";;
+	"Artix Linux") export distro_logo="";;
+	"Ubuntu") export distro_logo="";;
+	"Manjaro Linux") export distro_logo="";;
+	"Alpine Linux") export distro_logo="";;
+	"Debian GNU/Linux") export distro_logo="";;
+	"Devuan GNU/Linux") export distro_logo="";;
+	"AlmaLinux") export distro_logo="";;
+	"Fedora") export distro_logo="";;
+	"Gentoo") export distro_logo="";;
+	"CentOS Linux") export distro_logo="";;
+	"elementary OS") export distro_logo="";;
+	"Rocky Linux") export distro_logo="";;
+	"Kali GNU/Linux") export distro_logo="";;
+	"void") export distro_logo="";;
+	"Pop!_OS") export distro_logo="";;
+	"FreeBSD") export distro_logo="";;
+	"OpenBSD") export distro_logo="";;
+	"Darwin") export distro_logo="";;
+	*) export distro_logo="";;
+esac
+
+# Installer
+pbash_cfg() {
+	fc() {
+		echo "\e[38;5;"$1"m"
+	}
+	bc() {
+		echo "\e[48;5;"$1"m"
+	}
+	exit_cleanup() {
+		clear
+		echo "Run 'exec bash' to apply changes"
+		bc() {
+			echo "\\[\\033[48;5;"$1"m\\]"
+		}
+
+		fc() {
+			echo "\\[\\033[38;5;"$1"m\\]"
+		}	
+	}
+	config_with_nerd_fonts() {
+		clear
+		printf "Would you like for icons to be present in your shell? (as shown below)\n\n"
+		printf "$(bc 235) $distro_logo  $(fc 247) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "[1] Yes\n"
+		printf "[2] No\n"
+		read -r -p "Type one of the numbers shown above: " REPLY
+		case "$REPLY" in
+			1) config_with_nerd_fonts_2;;
+			2) config_without_nerd_fonts;;
+			*) config_with_nerd_fonts;;
+		esac
+	}
+	config_with_nerd_fonts_2() {
+		clear
+		printf "Pick a theme [1-4]\n\n"
+		printf "[1] Powerline Unseperated Colors -\n"
+		printf "$(bc 235) $distro_logo  $(fc 247) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "[2] Powerline Seperated Colors -\n"
+		printf "$(bc 252)$(fc 235) $distro_logo $(bc 235)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "[3] Powerline Colorful -\n"
+		printf "$(bc 214)$(fc 235) $distro_logo $(bc 24)$(fc 214) $(fc 2)~/foo$(fc 220)  master $(fc 34) \e[0m$(fc 24)\e[m\n\n"
+		printf "[4] Powerline Minimalist -\n"
+		printf "$distro_logo $(fc 10)~/foo $(fc 3) master $(fc 10)❯\e[0m\n\n"
+		read -r -p "Type one of the numbers shown above: " REPLY
+		case "$REPLY" in
+			1) contrast_unseperated_logo;;
+			2) contrast_seperated_logo;;
+			3) echo "PROMPT_COMMAND='colors_powerline'" >> ~/.bashrc;exit_cleanup;;
+			4) echo "PROMPT_COMMAND='minimalist_powerline'" >> ~/.bashrc;exit_cleanup;;
+			*) config_with_nerd_fonts_2;;
+		esac
+	}
+	contrast_unseperated_logo() {
+		clear
+		printf "Pick your contrast [1-4]\n\n"
+		printf "[1] Darkest -\n"
+		printf "$(bc 235) $distro_logo  $(fc 247) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "[2] Darker -\n"
+		printf "$(bc 236) $distro_logo  $(fc 248) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 236)\e[m\n\n"
+		printf "[3] Dark -\n"
+		printf "$(bc 237) $distro_logo  $(fc 249) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 237)\e[m\n\n"
+		printf "[4] Light -\n"
+		printf "$(bc 238) $distro_logo  $(fc 250) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 238)\e[m\n\n"
+		read -r -p "Type one of the numbers shown above: " REPLY
+		case "$REPLY" in
+			1) echo "PROMPT_COMMAND='unseperated_powerline_dark1'" >> ~/.bashrc;exit_cleanup;;
+			2) echo "PROMPT_COMMAND='unseperated_powerline_dark2'" >> ~/.bashrc;exit_cleanup;;
+			3) echo "PROMPT_COMMAND='unseperated_powerline_dark3'" >> ~/.bashrc;exit_cleanup;;
+			4) echo "PROMPT_COMMAND='unseperated_powerline_dark4'" >> ~/.bashrc;exit_cleanup;;
+			*) contrast_unseperated_logo;;
+		esac
+	}
+	contrast_seperated_logo() {
+		clear
+		printf "Pick your contrast [1-4]\n\n"
+		printf "[1] Darkest -\n"	
+		printf "$(bc 252)$(fc 235) $distro_logo $(bc 235)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "[2] Darker -\n"	
+		printf "$(bc 252)$(fc 236) $distro_logo $(bc 236)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 236)\e[m\n\n"
+		printf "[3] Dark -\n"	
+		printf "$(bc 252)$(fc 237) $distro_logo $(bc 237)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 237)\e[m\n\n"
+		printf "[4] Light -\n"	
+		printf "$(bc 252)$(fc 238) $distro_logo $(bc 238)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 238)\e[m\n\n"
+		read -r -p "Type one of the numbers shown above: " REPLY
+		case "$REPLY" in
+			1) echo "PROMPT_COMMAND='seperated_powerline_dark1'" >> ~/.bashrc;exit_cleanup;;
+			2) echo "PROMPT_COMMAND='seperated_powerline_dark2'" >> ~/.bashrc;exit_cleanup;;
+			3) echo "PROMPT_COMMAND='seperated_powerline_dark3'" >> ~/.bashrc;exit_cleanup;;
+			4) echo "PROMPT_COMMAND='seperated_powerline_dark4'" >> ~/.bashrc;exit_cleanup;;
+			*) contrast_seperated_logo;;
+		esac
+	}
+# -------------------- #
+	config_without_nerd_fonts() {
+		clear
+		printf "Pick a theme [1-4]\n\n"
+		printf "[1] Powerline Unseperated Colors -\n"
+		printf "$(bc 235) $HOSTNAME  $(fc 247) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "[2] Powerline Seperated Colors -\n"
+		printf "$(bc 252)$(fc 235) $HOSTNAME $(bc 235)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "[3] Powerline Colorful -\n"
+		printf "$(bc 214)$(fc 235) $HOSTNAME $(bc 24)$(fc 214) $(fc 2)~/foo$(fc 220) * master $(fc 34) \e[0m$(fc 24)\e[m\n\n"
+		printf "[4] Powerline Minimalist -\n"
+		printf "$(fc 10)~/foo $(fc 3)* master $(fc 10)❯\e[0m\n\n"
+		read -r -p "Type one of the numbers shown above: " REPLY
+		case "$REPLY" in
+			1) contrast_unseperated_nologo;;
+			2) contrast_seperated_nologo;;
+			3) echo "PROMPT_COMMAND='nologo_colors_powerline'" >> ~/.bashrc;exit_cleanup;;
+			4) echo "PROMPT_COMMAND='nologo_minimalist_powerline'" >> ~/.bashrc;exit_cleanup;;
+			*) config_without_nerd_fonts;;
+		esac
+	}
+	contrast_unseperated_nologo() {
+		clear
+		printf "Pick your contrast [1-4]\n\n"
+		printf "[1] Darkest -\n"
+		printf "$(bc 235) $HOSTNAME  $(fc 247) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "[2] Darker -\n"
+		printf "$(bc 236) $HOSTNAME  $(fc 248) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 236)\e[m\n\n"
+		printf "[3] Dark -\n"
+		printf "$(bc 237) $HOSTNAME  $(fc 249) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 237)\e[m\n\n"
+		printf "[4] Light -\n"
+		printf "$(bc 238) $HOSTNAME  $(fc 250) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 238)\e[m\n\n"
+		read -r -p "Type one of the numbers shown above: " REPLY
+		case "$REPLY" in
+			1) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark1'" >> ~/.bashrc;exit_cleanup;;
+			2) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark2'" >> ~/.bashrc;exit_cleanup;;
+			3) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark3'" >> ~/.bashrc;exit_cleanup;;
+			4) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark4'" >> ~/.bashrc;exit_cleanup;;
+			*) contrast_unseperated_nologo;;
+		esac
+	}
+	contrast_seperated_nologo() {
+		clear
+		printf "Pick your contrast [1-4]\n\n"
+		printf "[1] Darkest -\n"	
+		printf "$(bc 252)$(fc 235) $HOSTNAME $(bc 235)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "[2] Darker -\n"	
+		printf "$(bc 252)$(fc 236) $HOSTNAME $(bc 236)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 236)\e[m\n\n"
+		printf "[3] Dark -\n"	
+		printf "$(bc 252)$(fc 237) $HOSTNAME $(bc 237)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 237)\e[m\n\n"
+		printf "[4] Light -\n"	
+		printf "$(bc 252)$(fc 238) $HOSTNAME $(bc 238)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 238)\e[m\n\n"
+		read -r -p "Type one of the numbers shown above: " REPLY
+		case "$REPLY" in
+			1) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark1'" >> ~/.bashrc;exit_cleanup;;
+			2) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark2'" >> ~/.bashrc;exit_cleanup;;
+			3) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark3'" >> ~/.bashrc;exit_cleanup;;
+			4) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark4'" >> ~/.bashrc;exit_cleanup;;
+			*) contrast_seperated_nologo;;
+		esac
+	}
+
+	clear
+	printf "Welcome to the powerbash configuration wizard!\n"
+	printf "This wizard will help you configure your powerbash installation\n"
+	printf "\n\n\n\n"
+	read -nrs1 -p "Press any key to continue."
+	tuxtest() {
+		clear
+		printf "\n\n\n"
+		printf "Is a tux icon visible above?\n"
+		printf "[1] Yes\n"
+		printf "[2] No\n"
+		read -r -p "Type one of the numbers shown above: " REPLY
+		case "$REPLY" in
+			1) config_with_nerd_fonts;;
+			2) config_without_nerd_fonts;;
+			*) tuxtest;;
+		esac
+	}
+	tuxtest
+}
+# Command handler
+pbash() {
+	fc2() {
+		echo "\e[38;5;"$1"m"
+	}
+	bc2() {
+		echo "\e[48;5;"$1"m"
+	}
+	case $1 in
+		cfg) pbash_cfg ;;
+		theme) printf "$(fc2 6)pbash $(fc2 255)❯ theme: $(fc2 4)$PROMPT_COMMAND\n\e[m";;
+		help) printf "$(fc2 6)pbash $(fc2 255)❯ commands: $(fc2 4)cfg, theme, help\n\e[m";;
+		*) printf "$(fc2 6)pbash $(fc2 255)❯ $(fc2 1)invalid command\n\e[m";;
 	esac
 }
-
-MACOS_OPENBSD_CHECK() {
-	NAME=$(uname)
-	LINUX_FREEBSD_LOGO
-}
-. /etc/os-release 2>/dev/null && LINUX_FREEBSD_LOGO || MACOS_OPENBSD_CHECK
 # Styles!
 #
 # The style to be used will be decided by the installer
@@ -138,7 +321,7 @@ nologo_seperated_powerline_dark1() {
 	err=$?
 	case $err in
 		0) PS1="$(bc 252)$(fc 235) \h $(bc 235)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34) \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
-		*) PS1="$(bc 252)$(fc 235) \h $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1) $err \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
+		*) PS1="$(bc 252)$(fc 235) \h $(bc 235)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1) $err \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
 	esac
 }
 nologo_seperated_powerline_dark2() {
@@ -162,6 +345,22 @@ nologo_seperated_powerline_dark4() {
 		*) PS1="$(bc 252)$(fc 238) \h $(bc 238)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1) $err \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
 	esac
 }
+# Colorful Style (Powerline)
+colors_powerline() {
+	err=$?
+	case $err in
+		0) PS1="$(bc 214)$(fc 235) $distro_logo $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(__git_ps1) $(fc 34) \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
+		*) PS1="$(bc 214)$(fc 235) $distro_logo $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(__git_ps1) $(fc 1) $err \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
+	esac
+
+}
+nologo_colors_powerline() {
+	err=$?
+	case $err in
+		0) PS1="$(bc 214)$(fc 235) \h $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(git branch 2>/dev/null) $(fc 34) \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
+		*) PS1="$(bc 214)$(fc 235) \h $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(git branch 2>/dev/null) $(fc 1) $err \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
+	esac
+}
 # Minimalist Style (Powerline)
 minimalist_powerline() {
 	err=$?
@@ -174,7 +373,7 @@ minimalist_powerline() {
 nologo_minimalist_powerline() {
 	err=$?
 	case $err in
-		0) PS1="$(fc 10)\w $(fc 3)$(git branch 2>/dev/null) $(fc 10)❯\\[\\e[0m\\] " ;;
+		0) PS1="$(fc 10)\w $(fc 3)$(git branch 2>/dev/null) $(fc 10)❯\e[0m " ;;
 		*) PS1="$(fc 10)\w $(fc 3)$(git branch 2>/dev/null) $(fc 1)$err $(fc 10)❯\\[\\e[0m\\] " ;;
 	esac
 }
