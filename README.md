@@ -6,51 +6,23 @@ Bash theme made to look like powerlevel10k <br />
 * Git integration
 * Error code
 * Distro icons
+* Easy to use installation wizard
 
 ## Installation:
 To install, start by cloning this repository:
 ```bash
-git clone https://github.com/z-ffqq/powerbash.git
+git clone https://github.com/z-ffqq/powerbash.git ~/.local/share/powerbash 
+echo "source ~/.local/share/powerbash/powerbash.bash-theme" >> ~/.bashrc
 ```
-Proceed by moving `powerbash/powerbash.bash-theme` to any directory you'd like (or simply keep it):
+Proceed by restarting bash:
 ```bash
-mv powerbash/powerbash.bash-theme ~/Documents
+exec bash
 ```
-Source the script in your `~/.bashrc` file:
+Start the installation wizard
 ```bash
-source ~/Documents/powerbash.bash-theme
+pbash cfg
 ```
-Then, put one of the values below in `PROMPT_COMMAND`:
-```bash
-PROMPT_COMMAND=$(unseperated_powerline_dark1)
-```
-### Types:
-(nologo means the same variant of the theme without a distro or git branch logo)
-* Powerline Unseperated Colors (Dark, icons)
-  - `unseperated_powerline_dark1`
-  - `unseperated_powerline_dark2`
-  - `unseperated_powerline_dark3`
-  - `unseperated_powerline_dark4`
-* Powerline Seperated Colors (Dark, no icons)
-  - `nologo_unseperated_powerline_dark1`
-  - `nologo_unseperated_powerline_dark2`
-  - `nologo_unseperated_powerline_dark3`
-  - `nologo_unseperated_powerline_dark4`
-* Powerline Seperated Colors (Dark, icons)
-  - `seperated_powerline_dark1`
-  - `seperated_powerline_dark2`
-  - `seperated_powerline_dark3`
-  - `seperated_powerline_dark4`
-* Powerline Seperated Colors (Dark, no icons)
-  - `nologo_seperated_powerline_dark1`
-  - `nologo_seperated_powerline_dark2`
-  - `nologo_seperated_powerline_dark3`
-  - `nologo_seperated_powerline_dark4`
-* Powerline Minimalist (Icons)
-  - `minimalist_powerline`
-* Powerline Minimalist (No icons)
-  - `nologo_minimalist_powerline` <br /> <br />
-
+Then, proceed with the installation wizard.
 
 # Recommended
 [ble.sh](https://github.com/akinomyoga/ble.sh) | Syntax highlighting, advanced auto completion (if combined with bash-completion) <br />
