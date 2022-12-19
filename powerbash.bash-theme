@@ -29,7 +29,7 @@ case "$NAME" in
 	"elementary OS") export distro_logo="";;
 	"Rocky Linux") export distro_logo="";;
 	"Kali GNU/Linux") export distro_logo="";;
-	"void") export distro_logo="";;
+	"Void") export distro_logo="";;
 	"Pop!_OS") export distro_logo="";;
 	"FreeBSD") export distro_logo="";;
 	"OpenBSD") export distro_logo="";;
