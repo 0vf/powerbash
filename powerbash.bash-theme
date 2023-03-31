@@ -240,7 +240,7 @@ pbash() {
 		cfg) pbash_cfg;;
 		theme) printf "$(fc2 6)pbash $(fc2 255)❯ theme: $(fc2 4)$PROMPT_COMMAND\n\e[m";;
 		update) pbash_update;;
-		help) printf "$(fc2 6)pbash $(fc2 255)❯ commands: $(fc2 4)cfg, theme, help\n\e[m";;
+		help) printf "$(fc2 6)pbash $(fc2 255)❯ commands: $(fc2 4)cfg, theme, help, update\n\e[m";;
 		*) printf "$(fc2 6)pbash $(fc2 255)❯ $(fc2 1)invalid command\n\e[m";;
 	esac
 }
