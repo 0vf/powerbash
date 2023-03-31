@@ -7,6 +7,7 @@ Bash theme made to look like powerlevel10k <br />
 * Error code
 * Distro icons
 * Easy to use installation wizard
+* Updater
 
 ## Installation:
 To install, start by cloning this repository:
