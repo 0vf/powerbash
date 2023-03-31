@@ -221,11 +221,24 @@ pbash_update() {
 		echo "\e[48;5;"$1"m"
 	}
 	printf "$(fc2 6)pbash $(fc2 255)❯ checking for updates...\n\e"
-	git ls-remote --exit-code https://github.com/z-ffqq/powerbash.git main >/dev/null 2>&1
-	case "$?" in
-		2) printf "$(fc2 6)pbash $(fc2 255)❯ updates found, updating...\n\e" && git pull && clear && printf "$(fc2 6)pbash $(fc2 255)❯ type exec bash to apply changes\n\e";;
-		0) printf "$(fc2 6)pbash $(fc2 255)❯ up to date!\n\e";;
-	esac
+	cd ~/.local/share/powerbash
+	# set the path to the original git repo
+	REPO="~/.local/share/powerbash"
+	# set the branch to main
+	BRANCH="main"
+	# get the hash of the latest commit on the branch
+	LATEST_COMMIT=$(git ls-remote --heads https://github.com/z-ffqq/powerbash.git main | awk '{ print $1 }')
+	# get the hash of the most recent commit in the local repo
+	CURRENT_COMMIT=$(git log --pretty=format:"%H" -n 1)
+	# check if the hashes are the same
+	if [[ "$LATEST_COMMIT" == "$CURRENT_COMMIT" ]]; then
+		printf "$(fc2 6)pbash $(fc2 255)❯ up to date!\n\e"
+	else
+		printf "$(fc2 6)pbash $(fc2 255)❯ update available, updating...\n\e"
+		cd ~/.local/share/powerbash
+		git pull --quiet
+		"$(fc2 6)pbash $(fc2 255)❯ up to date! run exec bash for the changes to apply\n\e"
+	fi
 }
 
 # Command handler
