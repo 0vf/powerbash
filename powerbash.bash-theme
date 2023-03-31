@@ -211,6 +211,23 @@ pbash_cfg() {
 	}
 	tuxtest
 }
+
+# pbash updater
+pbash_update() {
+	fc2() {
+		echo "\e[38;5;"$1"m"
+	}
+	bc2() {
+		echo "\e[48;5;"$1"m"
+	}
+	printf "$(fc2 6)pbash $(fc2 255)❯ checking for updates...\n\e"
+	git ls-remote --exit-code https://github.com/z-ffqq/powerbash.git main >/dev/null 2>&1
+	case "$?" in
+		2) printf "$(fc2 6)pbash $(fc2 255)❯ updates found, updating...\n\e" && git pull && clear && printf "$(fc2 6)pbash $(fc2 255)❯ type exec bash to apply changes\n\e";;
+		0) printf "$(fc2 6)pbash $(fc2 255)❯ up to date!\n\e";;
+	esac
+}
+
 # Command handler
 pbash() {
 	fc2() {
@@ -220,8 +237,9 @@ pbash() {
 		echo "\e[48;5;"$1"m"
 	}
 	case $1 in
-		cfg) pbash_cfg ;;
+		cfg) pbash_cfg;;
 		theme) printf "$(fc2 6)pbash $(fc2 255)❯ theme: $(fc2 4)$PROMPT_COMMAND\n\e[m";;
+		update) pbash_update;;
 		help) printf "$(fc2 6)pbash $(fc2 255)❯ commands: $(fc2 4)cfg, theme, help\n\e[m";;
 		*) printf "$(fc2 6)pbash $(fc2 255)❯ $(fc2 1)invalid command\n\e[m";;
 	esac
