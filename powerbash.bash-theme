@@ -59,7 +59,7 @@ pbash_cfg() {
 	config_with_nerd_fonts() {
 		clear
 		printf "Would you like for icons to be present in your shell? (as shown below)\n\n"
-		printf "$(bc 235) $distro_logo  $(fc 247) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "$(bc 235) $distro_logo  $(fc 247) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n"
 		printf "[1] Yes\n"
 		printf "[2] No\n"
 		read -r -p "Type one of the numbers shown above: " REPLY
@@ -73,11 +73,11 @@ pbash_cfg() {
 		clear
 		printf "Pick a theme [1-4]\n\n"
 		printf "[1] Powerline Unseperated Colors -\n"
-		printf "$(bc 235) $distro_logo  $(fc 247) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "$(bc 235) $distro_logo  $(fc 247) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n"
 		printf "[2] Powerline Seperated Colors -\n"
-		printf "$(bc 252)$(fc 235) $distro_logo $(bc 235)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "$(bc 252)$(fc 235) $distro_logo $(bc 235)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n"
 		printf "[3] Powerline Colorful -\n"
-		printf "$(bc 214)$(fc 235) $distro_logo $(bc 24)$(fc 214) $(fc 2)~/foo$(fc 220)  master $(fc 34) \e[0m$(fc 24)\e[m\n\n"
+		printf "$(bc 214)$(fc 235) $distro_logo $(bc 24)$(fc 214) $(fc 2)~/foo$(fc 220)  master $(fc 34)✓ \e[0m$(fc 24)\e[m\n\n"
 		printf "[4] Powerline Minimalist -\n"
 		printf "$distro_logo $(fc 10)~/foo $(fc 3) master $(fc 10)❯\e[0m\n\n"
 		read -r -p "Type one of the numbers shown above: " REPLY
@@ -93,13 +93,13 @@ pbash_cfg() {
 		clear
 		printf "Pick your contrast [1-4]\n\n"
 		printf "[1] Darkest -\n"
-		printf "$(bc 235) $distro_logo  $(fc 247) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "$(bc 235) $distro_logo  $(fc 247) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n"
 		printf "[2] Darker -\n"
-		printf "$(bc 236) $distro_logo  $(fc 248) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 236)\e[m\n\n"
+		printf "$(bc 236) $distro_logo  $(fc 248) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 236)\e[m\n\n"
 		printf "[3] Dark -\n"
-		printf "$(bc 237) $distro_logo  $(fc 249) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 237)\e[m\n\n"
+		printf "$(bc 237) $distro_logo  $(fc 249) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 237)\e[m\n\n"
 		printf "[4] Light -\n"
-		printf "$(bc 238) $distro_logo  $(fc 250) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 238)\e[m\n\n"
+		printf "$(bc 238) $distro_logo  $(fc 250) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 238)\e[m\n\n"
 		read -r -p "Type one of the numbers shown above: " REPLY
 		case "$REPLY" in
 			1) echo "PROMPT_COMMAND='unseperated_powerline_dark1'" >> ~/.bashrc;exit_cleanup;;
@@ -113,13 +113,13 @@ pbash_cfg() {
 		clear
 		printf "Pick your contrast [1-4]\n\n"
 		printf "[1] Darkest -\n"	
-		printf "$(bc 252)$(fc 235) $distro_logo $(bc 235)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "$(bc 252)$(fc 235) $distro_logo $(bc 235)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n"
 		printf "[2] Darker -\n"	
-		printf "$(bc 252)$(fc 236) $distro_logo $(bc 236)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 236)\e[m\n\n"
+		printf "$(bc 252)$(fc 236) $distro_logo $(bc 236)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 236)\e[m\n\n"
 		printf "[3] Dark -\n"	
-		printf "$(bc 252)$(fc 237) $distro_logo $(bc 237)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 237)\e[m\n\n"
+		printf "$(bc 252)$(fc 237) $distro_logo $(bc 237)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 237)\e[m\n\n"
 		printf "[4] Light -\n"	
-		printf "$(bc 252)$(fc 238) $distro_logo $(bc 238)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34) \e[0m$(fc 238)\e[m\n\n"
+		printf "$(bc 252)$(fc 238) $distro_logo $(bc 238)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 238)\e[m\n\n"
 		read -r -p "Type one of the numbers shown above: " REPLY
 		case "$REPLY" in
 			1) echo "PROMPT_COMMAND='seperated_powerline_dark1'" >> ~/.bashrc;exit_cleanup;;
@@ -134,11 +134,11 @@ pbash_cfg() {
 		clear
 		printf "Pick a theme [1-4]\n\n"
 		printf "[1] Powerline Unseperated Colors -\n"
-		printf "$(bc 235) $HOSTNAME  $(fc 247) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "$(bc 235) $HOSTNAME  $(fc 247) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n"
 		printf "[2] Powerline Seperated Colors -\n"
-		printf "$(bc 252)$(fc 235) $HOSTNAME $(bc 235)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "$(bc 252)$(fc 235) $HOSTNAME $(bc 235)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n"
 		printf "[3] Powerline Colorful -\n"
-		printf "$(bc 214)$(fc 235) $HOSTNAME $(bc 24)$(fc 214) $(fc 2)~/foo$(fc 220) * master $(fc 34) \e[0m$(fc 24)\e[m\n\n"
+		printf "$(bc 214)$(fc 235) $HOSTNAME $(bc 24)$(fc 214) $(fc 2)~/foo$(fc 220) * master $(fc 34)✓ \e[0m$(fc 24)\e[m\n\n"
 		printf "[4] Powerline Minimalist -\n"
 		printf "$(fc 10)~/foo $(fc 3)* master $(fc 10)❯\e[0m\n\n"
 		read -r -p "Type one of the numbers shown above: " REPLY
@@ -154,13 +154,13 @@ pbash_cfg() {
 		clear
 		printf "Pick your contrast [1-4]\n\n"
 		printf "[1] Darkest -\n"
-		printf "$(bc 235) $HOSTNAME  $(fc 247) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "$(bc 235) $HOSTNAME  $(fc 247) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n"
 		printf "[2] Darker -\n"
-		printf "$(bc 236) $HOSTNAME  $(fc 248) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 236)\e[m\n\n"
+		printf "$(bc 236) $HOSTNAME  $(fc 248) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 236)\e[m\n\n"
 		printf "[3] Dark -\n"
-		printf "$(bc 237) $HOSTNAME  $(fc 249) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 237)\e[m\n\n"
+		printf "$(bc 237) $HOSTNAME  $(fc 249) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 237)\e[m\n\n"
 		printf "[4] Light -\n"
-		printf "$(bc 238) $HOSTNAME  $(fc 250) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 238)\e[m\n\n"
+		printf "$(bc 238) $HOSTNAME  $(fc 250) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 238)\e[m\n\n"
 		read -r -p "Type one of the numbers shown above: " REPLY
 		case "$REPLY" in
 			1) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark1'" >> ~/.bashrc;exit_cleanup;;
@@ -174,13 +174,13 @@ pbash_cfg() {
 		clear
 		printf "Pick your contrast [1-4]\n\n"
 		printf "[1] Darkest -\n"	
-		printf "$(bc 252)$(fc 235) $HOSTNAME $(bc 235)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 235)\e[m\n\n"
+		printf "$(bc 252)$(fc 235) $HOSTNAME $(bc 235)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n"
 		printf "[2] Darker -\n"	
-		printf "$(bc 252)$(fc 236) $HOSTNAME $(bc 236)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 236)\e[m\n\n"
+		printf "$(bc 252)$(fc 236) $HOSTNAME $(bc 236)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 236)\e[m\n\n"
 		printf "[3] Dark -\n"	
-		printf "$(bc 252)$(fc 237) $HOSTNAME $(bc 237)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 237)\e[m\n\n"
+		printf "$(bc 252)$(fc 237) $HOSTNAME $(bc 237)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 237)\e[m\n\n"
 		printf "[4] Light -\n"	
-		printf "$(bc 252)$(fc 238) $HOSTNAME $(bc 238)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34) \e[0m$(fc 238)\e[m\n\n"
+		printf "$(bc 252)$(fc 238) $HOSTNAME $(bc 238)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 238)\e[m\n\n"
 		read -r -p "Type one of the numbers shown above: " REPLY
 		case "$REPLY" in
 			1) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark1'" >> ~/.bashrc;exit_cleanup;;
@@ -234,28 +234,28 @@ pbash() {
 unseperated_powerline_dark1() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 235) $distro_logo  $(fc 247) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34) \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
+		0) PS1="$(bc 235) $distro_logo  $(fc 247) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34)✓ \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
 		*) PS1="$(bc 235) $distro_logo  $(fc 247) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 1) $err \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
 	esac
 }
 unseperated_powerline_dark2() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 236) $distro_logo  $(fc 248) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34) \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
+		0) PS1="$(bc 236) $distro_logo  $(fc 248) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34)✓ \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
 		*) PS1="$(bc 236) $distro_logo  $(fc 248) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 1) $err \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
 	esac
 }
 unseperated_powerline_dark3() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 237) $distro_logo  $(fc 249) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34) \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
+		0) PS1="$(bc 237) $distro_logo  $(fc 249) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34)✓ \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
 		*) PS1="$(bc 237) $distro_logo  $(fc 249) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 1) $err \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
 	esac
 }
 unseperated_powerline_dark4() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 238) $distro_logo  $(fc 250) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34) \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
+		0) PS1="$(bc 238) $distro_logo  $(fc 250) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34)✓ \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
 		*) PS1="$(bc 238) $distro_logo  $(fc 250) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 1) $err \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
 	esac
 }
@@ -263,93 +263,93 @@ unseperated_powerline_dark4() {
 nologo_unseperated_powerline_dark1() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 235) \h $(fc 247) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34) \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
-		*) PS1="$(bc 235) \h $(fc 247) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1) $err \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
+		0) PS1="$(bc 235) \h $(fc 247) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
+		*) PS1="$(bc 235) \h $(fc 247) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
 	esac
 }
 nologo_unseperated_powerline_dark2() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 236) \h $(fc 248) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34) \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
-		*) PS1="$(bc 236) \h $(fc 248) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1) $err \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
+		0) PS1="$(bc 236) \h $(fc 248) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
+		*) PS1="$(bc 236) \h $(fc 248) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
 	esac
 }
 nologo_unseperated_powerline_dark3() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 237) \h $(fc 249) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34) \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
-		*) PS1="$(bc 237) \h $(fc 249) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1) $err \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
+		0) PS1="$(bc 237) \h $(fc 249) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
+		*) PS1="$(bc 237) \h $(fc 249) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
 	esac
 }
 nologo_unseperated_powerline_dark4() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 238) \h $(fc 250) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34) \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
-		*) PS1="$(bc 238) \h $(fc 250) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1) $err \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
+		0) PS1="$(bc 238) \h $(fc 250) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
+		*) PS1="$(bc 238) \h $(fc 250) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
 	esac
 }
 # Seperated Dark Style (Powerline)
 seperated_powerline_dark1() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 252)$(fc 235) $distro_logo $(bc 235)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34) \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
+		0) PS1="$(bc 252)$(fc 235) $distro_logo $(bc 235)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34)✓ \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
 		*) PS1="$(bc 252)$(fc 235) $distro_logo $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 1) $err \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
 	esac
 }
 seperated_powerline_dark2() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 252)$(fc 236) $distro_logo $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34) \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
+		0) PS1="$(bc 252)$(fc 236) $distro_logo $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34)✓ \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
 		*) PS1="$(bc 252)$(fc 236) $distro_logo $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 1) $err\\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
 	esac
 }
 seperated_powerline_dark3() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 252)$(fc 237) $distro_logo $(bc 237)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34) \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
+		0) PS1="$(bc 252)$(fc 237) $distro_logo $(bc 237)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34)✓ \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
 		*) PS1="$(bc 252)$(fc 237) $distro_logo $(bc 237)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 1) $err \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
 	esac
 }
 seperated_powerline_dark4() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 252)$(fc 238) $distro_logo $(bc 238)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34) \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
+		0) PS1="$(bc 252)$(fc 238) $distro_logo $(bc 238)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 34)✓ \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
 		*) PS1="$(bc 252)$(fc 238) $distro_logo $(bc 238)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1) $(fc 1) $err \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
 	esac
 }
 nologo_seperated_powerline_dark1() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 252)$(fc 235) \h $(bc 235)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34) \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
-		*) PS1="$(bc 252)$(fc 235) \h $(bc 235)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1) $err \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
+		0) PS1="$(bc 252)$(fc 235) \h $(bc 235)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
+		*) PS1="$(bc 252)$(fc 235) \h $(bc 235)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
 	esac
 }
 nologo_seperated_powerline_dark2() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 252)$(fc 236) \h $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34) \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
-		*) PS1="$(bc 252)$(fc 236) \h $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1) $err\\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
+		0) PS1="$(bc 252)$(fc 236) \h $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
+		*) PS1="$(bc 252)$(fc 236) \h $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err\\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
 	esac
 }
 nologo_seperated_powerline_dark3() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 252)$(fc 237) \h $(bc 237)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34) \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
-		*) PS1="$(bc 252)$(fc 237) \h $(bc 237)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1) $err \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
+		0) PS1="$(bc 252)$(fc 237) \h $(bc 237)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
+		*) PS1="$(bc 252)$(fc 237) \h $(bc 237)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
 	esac
 }
 nologo_seperated_powerline_dark4() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 252)$(fc 238) \h $(bc 238)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34) \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
-		*) PS1="$(bc 252)$(fc 238) \h $(bc 238)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1) $err \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
+		0) PS1="$(bc 252)$(fc 238) \h $(bc 238)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
+		*) PS1="$(bc 252)$(fc 238) \h $(bc 238)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
 	esac
 }
 # Colorful Style (Powerline)
 colors_powerline() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 214)$(fc 235) $distro_logo $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(__git_ps1) $(fc 34) \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
+		0) PS1="$(bc 214)$(fc 235) $distro_logo $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(__git_ps1) $(fc 34)✓ \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
 		*) PS1="$(bc 214)$(fc 235) $distro_logo $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(__git_ps1) $(fc 1) $err \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
 	esac
 
@@ -357,8 +357,8 @@ colors_powerline() {
 nologo_colors_powerline() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 214)$(fc 235) \h $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(git branch 2>/dev/null) $(fc 34) \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
-		*) PS1="$(bc 214)$(fc 235) \h $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(git branch 2>/dev/null) $(fc 1) $err \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
+		0) PS1="$(bc 214)$(fc 235) \h $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
+		*) PS1="$(bc 214)$(fc 235) \h $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
 	esac
 }
 # Minimalist Style (Powerline)
