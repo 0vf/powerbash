@@ -404,7 +404,7 @@ minimalist_powerline() {
 nologo_minimalist_powerline() {
 	err=$?
 	case $err in
-		0) PS1="$(fc 10)\w $(fc 3)$(git branch 2>/dev/null) $(fc 10)❯\e[0m " ;;
+		0) PS1="$(fc 10)\w $(fc 3)$(git branch 2>/dev/null) $(fc 10)>\e[0m " ;;
 		*) PS1="$(fc 10)\w $(fc 3)$(git branch 2>/dev/null) $(fc 1)$err $(fc 10)>\\[\\e[0m\\] " ;;
 	esac
 }
