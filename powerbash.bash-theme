@@ -233,11 +233,13 @@ pbash_update() {
 	# check if the hashes are the same
 	if [[ "$LATEST_COMMIT" == "$CURRENT_COMMIT" ]]; then
 		printf "$(fc2 6)pbash $(fc2 255)❯ up to date!\n\e"
+		cd "$OLDPWD"
 	else
 		printf "$(fc2 6)pbash $(fc2 255)❯ update available, updating...\n\e"
 		cd ~/.local/share/powerbash
 		git pull --quiet
 		printf "$(fc2 6)pbash $(fc2 255)❯ up to date! run exec bash for the changes to apply\n\e"
+		cd "$OLDPWD"
 	fi
 }
 
