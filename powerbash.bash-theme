@@ -140,7 +140,7 @@ pbash_cfg() {
 		printf "[3] Powerline Colorful -\n"
 		printf "$(bc 214)$(fc 235) $HOSTNAME $(bc 24)$(fc 214) $(fc 2)~/foo$(fc 220) * master $(fc 34)✓ \e[0m$(fc 24)\e[m\n\n"
 		printf "[4] Powerline Minimalist -\n"
-		printf "$(fc 10)~/foo $(fc 3)* master $(fc 10)❯\e[0m\n\n"
+		printf "$(fc 10)~/foo $(fc 3)* master $(fc 10)>\e[0m\n\n"
 		read -r -p "Type one of the numbers shown above: " REPLY
 		case "$REPLY" in
 			1) contrast_unseperated_nologo;;
@@ -405,6 +405,6 @@ nologo_minimalist_powerline() {
 	err=$?
 	case $err in
 		0) PS1="$(fc 10)\w $(fc 3)$(git branch 2>/dev/null) $(fc 10)❯\e[0m " ;;
-		*) PS1="$(fc 10)\w $(fc 3)$(git branch 2>/dev/null) $(fc 1)$err $(fc 10)❯\\[\\e[0m\\] " ;;
+		*) PS1="$(fc 10)\w $(fc 3)$(git branch 2>/dev/null) $(fc 1)$err $(fc 10)>\\[\\e[0m\\] " ;;
 	esac
 }
