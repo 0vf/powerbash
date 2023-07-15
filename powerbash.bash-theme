@@ -285,7 +285,6 @@ pbash_update() {
 		cd "$OLDPWD"
 	else
 		printf "$(fc2 6)pbash $(fc2 255)❯ update available, updating...\n\e"
-		cd ~/.local/share/powerbash
 		git pull --quiet
 		printf "$(fc2 6)pbash $(fc2 255)❯ up to date! run exec bash for the changes to apply\n\e"
 		cd "$OLDPWD"
