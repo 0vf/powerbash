@@ -280,15 +280,20 @@ pbash_update() {
 	# get the hash of the most recent commit in the local repo
 	CURRENT_COMMIT=$(git log --pretty=format:"%H" -n 1)
 	# check if the hashes are the same
-	if [[ "$LATEST_COMMIT" == "$CURRENT_COMMIT" ]]; then
-		printf "$(fc2 6)pbash $(fc2 255)❯ up to date!\n\e"
-		cd "$OLDPWD"
-	else
-		printf "$(fc2 6)pbash $(fc2 255)❯ update available, updating...\n\e"
-		git pull --quiet
-		printf "$(fc2 6)pbash $(fc2 255)❯ up to date! run exec bash for the changes to apply\n\e"
-		cd "$OLDPWD"
-	fi
+    if [[ "$LATEST_COMMIT" == "$CURRENT_COMMIT" ]]; then
+        printf "$(fc2 6)pbash $(fc2 255)❯ up to date!\n\e"
+        cd "$OLDPWD"
+    else
+		# check if the command was executed with $CHECK_ONLY or not
+        if [[ "$CHECK_ONLY" != "true" ]]; then
+            printf "$(fc2 6)pbash $(fc2 255)❯ update available, updating...\n\e"
+            git pull --quiet
+            printf "$(fc2 6)pbash $(fc2 255)❯ up to date! run exec bash for the changes to apply\n\e"
+        else
+            printf "$(fc2 6)pbash $(fc2 255)❯ update available! run $(fc2 6)pbash update$(fc2 255) to update.\n\e"
+        fi
+        cd "$OLDPWD"
+    fi
 }
 
 # Command handler
