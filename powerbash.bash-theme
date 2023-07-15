@@ -3,9 +3,9 @@
 # function to get git branch for ps1 (made as an alternative to git-prompt.sh)
 __git_ps1() {
     branch=$(git branch 2>/dev/null | sed 's/*//g')
-    unstagedfiles=$(git status --short | wc -l | tr -d ' ')
-    stagedfiles=$(git status --short | grep '^A' | wc -l | tr -d ' ')
-    unpushedcommits=$(git log --branches --not --remotes | grep "^commit" | wc -l | tr -d ' ')
+    unstagedfiles=$(git status --short 2>/dev/null | wc -l | tr -d ' ')
+    stagedfiles=$(git status --short 2>/dev/null | grep '^A' | wc -l | tr -d ' ')
+    unpushedcommits=$(git log --branches --not --remotes 2>/dev/null | grep "^commit" | wc -l | tr -d ' ')
     prompt=""
 
     if [[ "$branch" != "" ]]; then
@@ -29,9 +29,9 @@ __git_ps1() {
 
 __git_ps1u() {
     branch=$(git branch 2>/dev/null)
-    unstagedfiles=$(git status --short | wc -l | tr -d ' ')
-    stagedfiles=$(git status --short | grep '^A' | wc -l | tr -d ' ')
-    unpushedcommits=$(git log --branches --not --remotes | grep "^commit" | wc -l | tr -d ' ')
+    unstagedfiles=$(git status --short 2>/dev/null | wc -l | tr -d ' ')
+    stagedfiles=$(git status --short 2>/dev/null | grep '^A' | wc -l | tr -d ' ')
+    unpushedcommits=$(git log --branches --not --remotes 2>/dev/null | grep "^commit" | wc -l | tr -d ' ')
     prompt=""
 
     if [[ "$branch" != "" ]]; then
