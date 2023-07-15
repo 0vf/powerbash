@@ -2,8 +2,57 @@
 # Bash theme that looks like powerlevel10k
 # function to get git branch for ps1 (made as an alternative to git-prompt.sh)
 __git_ps1() {
-	git branch 2> /dev/null | sed 's/*//g'
+    branch=$(git branch 2>/dev/null | sed 's/*//g')
+    unstagedfiles=$(git status --short | wc -l | tr -d ' ')
+    stagedfiles=$(git status --short | grep '^A' | wc -l | tr -d ' ')
+    unpushedcommits=$(git log --branches --not --remotes | grep "^commit" | wc -l | tr -d ' ')
+    prompt=""
+
+    if [[ "$branch" != "" ]]; then
+        prompt+="$branch"
+    fi
+
+    if [[ "$unstagedfiles" -ne "0" ]]; then
+        prompt+=" ?$unstagedfiles"
+    fi
+
+    if [[ "$stagedfiles" -ne "0" ]]; then
+        prompt+=" +$stagedfiles"
+    fi
+
+    if [[ "$unpushedcommits" -ne "0" ]]; then
+        prompt+=" ^$unpushedcommits"
+    fi
+
+    printf "%s" "${prompt}"
 }
+
+__git_ps1u() {
+    branch=$(git branch 2>/dev/null)
+    unstagedfiles=$(git status --short | wc -l | tr -d ' ')
+    stagedfiles=$(git status --short | grep '^A' | wc -l | tr -d ' ')
+    unpushedcommits=$(git log --branches --not --remotes | grep "^commit" | wc -l | tr -d ' ')
+    prompt=""
+
+    if [[ "$branch" != "" ]]; then
+        prompt+="$branch"
+    fi
+
+    if [[ "$unstagedfiles" -ne "0" ]]; then
+        prompt+=" ?$unstagedfiles"
+    fi
+
+    if [[ "$stagedfiles" -ne "0" ]]; then
+        prompt+=" +$stagedfiles"
+    fi
+
+    if [[ "$unpushedcommits" -ne "0" ]]; then
+        prompt+=" ^$unpushedcommits"
+    fi
+
+    printf "%s" "${prompt}"
+}
+
 bc() {
     echo "\\[\\033[48;5;"$1"m\\]"
 }
@@ -296,29 +345,29 @@ unseperated_powerline_dark4() {
 nologo_unseperated_powerline_dark1() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 235) \h $(fc 247) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
-		*) PS1="$(bc 235) \h $(fc 247) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
+		0) PS1="$(bc 235) \h $(fc 247) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 34)✓ \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
+		*) PS1="$(bc 235) \h $(fc 247) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 1)X $err \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
 	esac
 }
 nologo_unseperated_powerline_dark2() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 236) \h $(fc 248) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
-		*) PS1="$(bc 236) \h $(fc 248) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
+		0) PS1="$(bc 236) \h $(fc 248) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 34)✓ \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
+		*) PS1="$(bc 236) \h $(fc 248) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 1)X $err \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
 	esac
 }
 nologo_unseperated_powerline_dark3() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 237) \h $(fc 249) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
-		*) PS1="$(bc 237) \h $(fc 249) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
+		0) PS1="$(bc 237) \h $(fc 249) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 34)✓ \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
+		*) PS1="$(bc 237) \h $(fc 249) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 1)X $err \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
 	esac
 }
 nologo_unseperated_powerline_dark4() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 238) \h $(fc 250) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
-		*) PS1="$(bc 238) \h $(fc 250) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
+		0) PS1="$(bc 238) \h $(fc 250) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 34)✓ \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
+		*) PS1="$(bc 238) \h $(fc 250) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 1)X $err \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
 	esac
 }
 # Seperated Dark Style (Powerline)
@@ -353,29 +402,29 @@ seperated_powerline_dark4() {
 nologo_seperated_powerline_dark1() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 252)$(fc 235) \h $(bc 235)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
-		*) PS1="$(bc 252)$(fc 235) \h $(bc 235)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
+		0) PS1="$(bc 252)$(fc 235) \h $(bc 235)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 34)✓ \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
+		*) PS1="$(bc 252)$(fc 235) \h $(bc 235)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 1)X $err \\[\\e[0m\\]$(fc 235)\[\e[m\] " ;;
 	esac
 }
 nologo_seperated_powerline_dark2() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 252)$(fc 236) \h $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
-		*) PS1="$(bc 252)$(fc 236) \h $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err\\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
+		0) PS1="$(bc 252)$(fc 236) \h $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 34)✓ \\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
+		*) PS1="$(bc 252)$(fc 236) \h $(bc 236)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 1)X $err\\[\\e[0m\\]$(fc 236)\[\e[m\] " ;;
 	esac
 }
 nologo_seperated_powerline_dark3() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 252)$(fc 237) \h $(bc 237)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
-		*) PS1="$(bc 252)$(fc 237) \h $(bc 237)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
+		0) PS1="$(bc 252)$(fc 237) \h $(bc 237)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 34)✓ \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
+		*) PS1="$(bc 252)$(fc 237) \h $(bc 237)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 1)X $err \\[\\e[0m\\]$(fc 237)\[\e[m\] " ;;
 	esac
 }
 nologo_seperated_powerline_dark4() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 252)$(fc 238) \h $(bc 238)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
-		*) PS1="$(bc 252)$(fc 238) \h $(bc 238)$(fc 252) $(fc 2)\w$(fc 6) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
+		0) PS1="$(bc 252)$(fc 238) \h $(bc 238)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 34)✓ \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
+		*) PS1="$(bc 252)$(fc 238) \h $(bc 238)$(fc 252) $(fc 2)\w$(fc 6) $(__git_ps1u) $(fc 1)X $err \\[\\e[0m\\]$(fc 238)\[\e[m\] " ;;
 	esac
 }
 # Colorful Style (Powerline)
@@ -390,8 +439,8 @@ colors_powerline() {
 nologo_colors_powerline() {
 	err=$?
 	case $err in
-		0) PS1="$(bc 214)$(fc 235) \h $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(git branch 2>/dev/null) $(fc 34)✓ \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
-		*) PS1="$(bc 214)$(fc 235) \h $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(git branch 2>/dev/null) $(fc 1)X $err \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
+		0) PS1="$(bc 214)$(fc 235) \h $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(__git_ps1u) $(fc 34)✓ \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
+		*) PS1="$(bc 214)$(fc 235) \h $(bc 24)$(fc 214) $(fc 2)\w$(fc 220) $(__git_ps1u) $(fc 1)X $err \\[\\e[0m\\]$(fc 24)\[\e[m\] " ;;
 	esac
 }
 # Minimalist Style (Powerline)
@@ -406,7 +455,7 @@ minimalist_powerline() {
 nologo_minimalist_powerline() {
 	err=$?
 	case $err in
-		0) PS1="$(fc 10)\w $(fc 3)$(git branch 2>/dev/null) $(fc 10)>\e[0m " ;;
-		*) PS1="$(fc 10)\w $(fc 3)$(git branch 2>/dev/null) $(fc 1)$err $(fc 10)>\\[\\e[0m\\] " ;;
+		0) PS1="$(fc 10)\w $(fc 3)$(__git_ps1u) $(fc 10)>\e[0m " ;;
+		*) PS1="$(fc 10)\w $(fc 3)$(__git_ps1u) $(fc 1)$err $(fc 10)>\\[\\e[0m\\] " ;;
 	esac
 }
