@@ -2,53 +2,65 @@
 # Bash theme that looks like powerlevel10k
 # function to get git branch for ps1 (made as an alternative to git-prompt.sh)
 __git_ps1() {
-    branch=$(git branch 2>/dev/null | sed 's/*//g')
-    unstagedfiles=$(git status --porcelain 2>/dev/null | grep -c '^??')
-    stagedfiles=$(git status --short 2>/dev/null | grep '^A' | wc -l | tr -d ' ')
-    unpushedcommits=$(git log --branches --not --remotes 2>/dev/null | grep "^commit" | wc -l | tr -d ' ')
-    prompt=""
+	if [[ "$__pbash_show_git_info" != "false" ]]; then
+		branch=$(git branch 2>/dev/null | sed 's/*//g')
+		if [[ "$__pbash_show_extra_git_info" != "false" ]]; then
+			unstagedfiles=$(git status --porcelain 2>/dev/null | grep -c '^??')
+			stagedfiles=$(git status --short 2>/dev/null | grep '^A' | wc -l | tr -d ' ')
+			unpushedcommits=$(git log --branches --not --remotes 2>/dev/null | grep "^commit" | wc -l | tr -d ' ')
+		fi
+			prompt=""
 
-    if [[ "$branch" != "" ]]; then
-        prompt+="$branch"
-    fi
+		if [[ "$branch" != "" ]]; then
+			prompt+="$branch"
+		fi
+		
+		if [[ "__$pbash_show_extra_git_info" != "false" ]]; then
+			if [[ "$unstagedfiles" -ne "0" ]]; then
+				prompt+=" ?$unstagedfiles"
+			fi
 
-    if [[ "$unstagedfiles" -ne "0" ]]; then
-        prompt+=" ?$unstagedfiles"
-    fi
+			if [[ "$stagedfiles" -ne "0" ]]; then
+				prompt+=" +$stagedfiles"
+			fi
 
-    if [[ "$stagedfiles" -ne "0" ]]; then
-        prompt+=" +$stagedfiles"
-    fi
-
-    if [[ "$unpushedcommits" -ne "0" ]]; then
-        prompt+=" ^$unpushedcommits"
-    fi
+			if [[ "$unpushedcommits" -ne "0" ]]; then
+				prompt+=" ^$unpushedcommits"
+			fi
+		fi
+	fi
 
     printf "%s" "${prompt}"
 }
 
 __git_ps1u() {
-    branch=$(git branch 2>/dev/null)
-    unstagedfiles=$(git status --porcelain 2>/dev/null | grep -c '^??')
-    stagedfiles=$(git status --short 2>/dev/null | grep '^A' | wc -l | tr -d ' ')
-    unpushedcommits=$(git log --branches --not --remotes 2>/dev/null | grep "^commit" | wc -l | tr -d ' ')
-    prompt=""
+	if [[ "$__pbash_show_git_info" != "false" ]]; then
+		branch=$(git branch 2>/dev/null)
+		if [[ "$__pbash_show_extra_git_info" != "false" ]]; then
+			unstagedfiles=$(git status --porcelain 2>/dev/null | grep -c '^??')
+			stagedfiles=$(git status --short 2>/dev/null | grep '^A' | wc -l | tr -d ' ')
+			unpushedcommits=$(git log --branches --not --remotes 2>/dev/null | grep "^commit" | wc -l | tr -d ' ')
+		fi
+			prompt=""
 
-    if [[ "$branch" != "" ]]; then
-        prompt+="$branch"
-    fi
+		if [[ "$branch" != "" ]]; then
+			prompt+="$branch"
+		fi
+		
+		if [[ "$__pbash_show_extra_git_info" != "false" ]]; then
+			if [[ "$unstagedfiles" -ne "0" ]]; then
+				prompt+=" ?$unstagedfiles"
+			fi
 
-    if [[ "$unstagedfiles" -ne "0" ]]; then
-        prompt+=" ?$unstagedfiles"
-    fi
+			if [[ "$stagedfiles" -ne "0" ]]; then
+				prompt+=" +$stagedfiles"
+			fi
 
-    if [[ "$stagedfiles" -ne "0" ]]; then
-        prompt+=" +$stagedfiles"
-    fi
-
-    if [[ "$unpushedcommits" -ne "0" ]]; then
-        prompt+=" ^$unpushedcommits"
-    fi
+			if [[ "$unpushedcommits" -ne "0" ]]; then
+				prompt+=" ^$unpushedcommits"
+			fi
+		fi
+	fi
 
     printf "%s" "${prompt}"
 }
@@ -60,7 +72,10 @@ bc() {
 fc() {
     echo "\\[\\033[38;5;"$1"m\\]"
 }
-PROMPT_DIRTRIM=4
+
+if [[ "$__pbash_shorten_directory" != "false" ]]; then
+	PROMPT_DIRTRIM=4
+fi
 # Distro checker (for the distro's logo in the prompt)
 . /etc/os-release 2>/dev/null || NAME=$(uname)
 case "$NAME" in
@@ -105,6 +120,43 @@ pbash_cfg() {
 			echo "\\[\\033[38;5;"$1"m\\]"
 		}	
 	}
+	config_git_2() {
+		clear
+		printf "Would you like for extra git information to be shown to you as well? (eg. unstaged files, staged files, commits)\n\n"
+		printf "WARNING: May have a performance impact to the prompt in large projects!"
+		printf "\n"
+		case "$no_nerd_fonts" in
+			"true") printf "$(bc 235) $HOSTNAME  $(fc 247) $(fc 2)~/foo$(fc 6) * master ?1 +2 ^1 $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n" ;;
+			*) printf "$(bc 235) $distro_logo  $(fc 247) $(fc 2)~/foo$(fc 6)  master ?1 +2 ^1 $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n" ;;
+		esac
+		printf "\n\n"
+		printf "[1] Yes\n"
+		printf "[2] No\n"
+		read -r -p "Type one of the numbers shown above: " REPLY
+		case "$REPLY" in
+			1) exit_cleanup;;
+			2) echo '__pbash_show_extra_git_info="false"' >> ~/.bashrc;;
+			*) config_git_2;;
+		esac
+	}
+	config_git() {
+		clear
+		printf "Would you like for git information to be shown to you?"
+		printf "\n\n"
+		case "$no_nerd_fonts" in
+			"true") printf "$(bc 235) $HOSTNAME  $(fc 247) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n" ;;
+			*) printf "$(bc 235) $distro_logo  $(fc 247) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n" ;;
+		esac
+		printf "\n\n"
+		printf "[1] Yes\n"
+		printf "[2] No\n"
+		read -r -p "Type one of the numbers shown above: " REPLY
+		case "$REPLY" in
+			1) config_git_2;;
+			2) echo '__pbash_show_git_info="false"' >> ~/.bashrc;;
+			*) config_git;;
+		esac
+	}
 	config_with_nerd_fonts() {
 		clear
 		printf "Would you like for icons to be present in your shell? (as shown below)\n\n"
@@ -133,8 +185,8 @@ pbash_cfg() {
 		case "$REPLY" in
 			1) contrast_unseperated_logo;;
 			2) contrast_seperated_logo;;
-			3) echo "PROMPT_COMMAND='colors_powerline'" >> ~/.bashrc;exit_cleanup;;
-			4) echo "PROMPT_COMMAND='minimalist_powerline'" >> ~/.bashrc;exit_cleanup;;
+			3) echo "PROMPT_COMMAND='colors_powerline'" >> ~/.bashrc;config_git;;
+			4) echo "PROMPT_COMMAND='minimalist_powerline'" >> ~/.bashrc;config_git;;
 			*) config_with_nerd_fonts_2;;
 		esac
 	}
@@ -151,10 +203,10 @@ pbash_cfg() {
 		printf "$(bc 238) $distro_logo  $(fc 250) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 238)\e[m\n\n"
 		read -r -p "Type one of the numbers shown above: " REPLY
 		case "$REPLY" in
-			1) echo "PROMPT_COMMAND='unseperated_powerline_dark1'" >> ~/.bashrc;exit_cleanup;;
-			2) echo "PROMPT_COMMAND='unseperated_powerline_dark2'" >> ~/.bashrc;exit_cleanup;;
-			3) echo "PROMPT_COMMAND='unseperated_powerline_dark3'" >> ~/.bashrc;exit_cleanup;;
-			4) echo "PROMPT_COMMAND='unseperated_powerline_dark4'" >> ~/.bashrc;exit_cleanup;;
+			1) echo "PROMPT_COMMAND='unseperated_powerline_dark1'" >> ~/.bashrc;config_git;;
+			2) echo "PROMPT_COMMAND='unseperated_powerline_dark2'" >> ~/.bashrc;config_git;;
+			3) echo "PROMPT_COMMAND='unseperated_powerline_dark3'" >> ~/.bashrc;config_git;;
+			4) echo "PROMPT_COMMAND='unseperated_powerline_dark4'" >> ~/.bashrc;config_git;;
 			*) contrast_unseperated_logo;;
 		esac
 	}
@@ -171,16 +223,17 @@ pbash_cfg() {
 		printf "$(bc 252)$(fc 238) $distro_logo $(bc 238)$(fc 252) $(fc 2)~/foo$(fc 6)  master $(fc 34)✓ \e[0m$(fc 238)\e[m\n\n"
 		read -r -p "Type one of the numbers shown above: " REPLY
 		case "$REPLY" in
-			1) echo "PROMPT_COMMAND='seperated_powerline_dark1'" >> ~/.bashrc;exit_cleanup;;
-			2) echo "PROMPT_COMMAND='seperated_powerline_dark2'" >> ~/.bashrc;exit_cleanup;;
-			3) echo "PROMPT_COMMAND='seperated_powerline_dark3'" >> ~/.bashrc;exit_cleanup;;
-			4) echo "PROMPT_COMMAND='seperated_powerline_dark4'" >> ~/.bashrc;exit_cleanup;;
+			1) echo "PROMPT_COMMAND='seperated_powerline_dark1'" >> ~/.bashrc;config_git;;
+			2) echo "PROMPT_COMMAND='seperated_powerline_dark2'" >> ~/.bashrc;config_git;;
+			3) echo "PROMPT_COMMAND='seperated_powerline_dark3'" >> ~/.bashrc;config_git;;
+			4) echo "PROMPT_COMMAND='seperated_powerline_dark4'" >> ~/.bashrc;config_git;;
 			*) contrast_seperated_logo;;
 		esac
 	}
 # -------------------- #
 	config_without_nerd_fonts() {
 		clear
+		no_nerd_fonts="true"
 		printf "Pick a theme [1-4]\n\n"
 		printf "[1] Powerline Unseperated Colors -\n"
 		printf "$(bc 235) $HOSTNAME  $(fc 247) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 235)\e[m\n\n"
@@ -194,8 +247,8 @@ pbash_cfg() {
 		case "$REPLY" in
 			1) contrast_unseperated_nologo;;
 			2) contrast_seperated_nologo;;
-			3) echo "PROMPT_COMMAND='nologo_colors_powerline'" >> ~/.bashrc;exit_cleanup;;
-			4) echo "PROMPT_COMMAND='nologo_minimalist_powerline'" >> ~/.bashrc;exit_cleanup;;
+			3) echo "PROMPT_COMMAND='nologo_colors_powerline'" >> ~/.bashrc;config_git;;
+			4) echo "PROMPT_COMMAND='nologo_minimalist_powerline'" >> ~/.bashrc;config_git;;
 			*) config_without_nerd_fonts;;
 		esac
 	}
@@ -212,10 +265,10 @@ pbash_cfg() {
 		printf "$(bc 238) $HOSTNAME  $(fc 250) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 238)\e[m\n\n"
 		read -r -p "Type one of the numbers shown above: " REPLY
 		case "$REPLY" in
-			1) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark1'" >> ~/.bashrc;exit_cleanup;;
-			2) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark2'" >> ~/.bashrc;exit_cleanup;;
-			3) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark3'" >> ~/.bashrc;exit_cleanup;;
-			4) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark4'" >> ~/.bashrc;exit_cleanup;;
+			1) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark1'" >> ~/.bashrc;config_git;;
+			2) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark2'" >> ~/.bashrc;config_git;;
+			3) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark3'" >> ~/.bashrc;config_git;;
+			4) echo "PROMPT_COMMAND='nologo_unseperated_powerline_dark4'" >> ~/.bashrc;config_git;;
 			*) contrast_unseperated_nologo;;
 		esac
 	}
@@ -232,10 +285,10 @@ pbash_cfg() {
 		printf "$(bc 252)$(fc 238) $HOSTNAME $(bc 238)$(fc 252) $(fc 2)~/foo$(fc 6) * master $(fc 34)✓ \e[0m$(fc 238)\e[m\n\n"
 		read -r -p "Type one of the numbers shown above: " REPLY
 		case "$REPLY" in
-			1) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark1'" >> ~/.bashrc;exit_cleanup;;
-			2) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark2'" >> ~/.bashrc;exit_cleanup;;
-			3) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark3'" >> ~/.bashrc;exit_cleanup;;
-			4) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark4'" >> ~/.bashrc;exit_cleanup;;
+			1) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark1'" >> ~/.bashrc;config_git;;
+			2) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark2'" >> ~/.bashrc;config_git;;
+			3) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark3'" >> ~/.bashrc;config_git;;
+			4) echo "PROMPT_COMMAND='nologo_seperated_powerline_dark4'" >> ~/.bashrc;config_git;;
 			*) contrast_seperated_nologo;;
 		esac
 	}
