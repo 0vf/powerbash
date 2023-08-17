@@ -4,6 +4,8 @@ install-root:
 	@printf "\nInstalling as root...\n\n"
 	mkdir -p /usr/local/share/powerbash
 	cp powerbash.bash-theme /usr/local/share/powerbash
+	cp -r commands /usr/local/share/powerbash
+	cp -r modules /usr/local/share/powerbash
 	cp LICENSE /usr/local/share/powerbash
 	@printf "\nInstallation complete!\n\n"
 	@printf "Run the following commands to add powerbash to your shell:\n"
