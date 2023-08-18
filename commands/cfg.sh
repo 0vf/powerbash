@@ -40,7 +40,7 @@ pbash_cfg() {
 		read -r -p "Type one of the numbers shown above: " REPLY
 		case "$REPLY" in
 			1) pbash modcfg show_extra_git_info true;exit_cleanup;;
-			2) pbash modcfg show_git_info false;exit_cleanup;;
+			2) pbash modcfg show_extra_git_info false;exit_cleanup;;
 			*) config_git_2;;
 		esac
 	}

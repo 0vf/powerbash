@@ -5,7 +5,7 @@ __pbash_installation_dir=$(dirname "${BASH_SOURCE[0]}")
 [ -d "${__pbash_installation_dir}/modules" ] && for file in "${__pbash_installation_dir}/modules"/*; do [ -f "$file" ] && source "$file"; done
 [ -d "${__pbash_installation_dir}/commands" ] && for file in "${__pbash_installation_dir}/commands"/*; do [ -f "$file" ] && source "$file"; done
 __pbash_command_prefix="$(fc2 6)pbash $(fc2 255)❯" 
-__pbash_current_version="2.1.0"
+__pbash_current_version="2.1.1"
 if [[ "$__pbash_shorten_directory" != "false" ]]; then
 	PROMPT_DIRTRIM=4
 fi
