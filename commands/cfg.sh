@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # Installer
-__pbash_commands+="cfg"
+__pbash_commands_cfg_help='usage: pbash cfg
+
+options:
+ pbash cfg - launches configuration wizard 
+'
+
 pbash_cfg() {
 	pbash makecfg
 	fc() {

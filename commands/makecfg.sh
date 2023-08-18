@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 __pbash_configuration_path=$HOME/.config/powerbash/config.cfg
+__pbash_commands_makecfg_help='usage: pbash makecfg
+
+options:
+ pbash makecfg - generate a powerbash configuration file
+'
+
 pbash_makecfg() {
 	[ -f $__pbash_configuration_path ] && printf "${__pbash_command_prefix} $(fc2 1)powerbash configuration already initialized\e[m\n" && return 1
 	mkdir -p ~/.config/powerbash

@@ -4,7 +4,7 @@
 # The style to be used will be decided by the installer
 
 # Unseperated Dark Style (Powerline)
-__pbash_modules_list+="themes "
+__pbash_modules_list+=" themes"
 unseperated_powerline_dark1() {
 	err=$?
 	case $err in

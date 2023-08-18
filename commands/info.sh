@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 # pbash info
+__pbash_commands_info_help='usage: pbash info
+
+options:
+ pbash info - print information about the powerbash install 
+'
+
 pbash_info() {
 	printf "${__pbash_command_prefix} powerbash information:\n"
 	pbash theme

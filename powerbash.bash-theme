@@ -5,7 +5,7 @@ __pbash_installation_dir=$(dirname "${BASH_SOURCE[0]}")
 [ -d "${__pbash_installation_dir}/modules" ] && for file in "${__pbash_installation_dir}/modules"/*; do [ -f "$file" ] && source "$file"; done
 [ -d "${__pbash_installation_dir}/commands" ] && for file in "${__pbash_installation_dir}/commands"/*; do [ -f "$file" ] && source "$file"; done
 __pbash_command_prefix="$(fc2 6)pbash $(fc2 255)❯" 
-__pbash_current_version="2.0.0"
+__pbash_current_version="2.1.0"
 if [[ "$__pbash_shorten_directory" != "false" ]]; then
 	PROMPT_DIRTRIM=4
 fi
@@ -45,7 +45,19 @@ pbash() {
 				command_name=$(basename "$file" .sh)
 				command_names+=" $command_name"
 			done
-			printf "${__pbash_command_prefix} commands:$command_names\n\e[m"
+			printf "${__pbash_command_prefix} commands:$(fc2 4)$command_names\n\e[m"
+
+			if [[ -n $2 ]]; then
+				command_help_variable="__pbash_commands_${2}_help"
+				if declare -p "$command_help_variable" &>/dev/null; then
+					printf "\n${__pbash_command_prefix} $2 help:\n"
+					printf "%s\e[m" "${!command_help_variable}"
+				else
+					printf "\n${__pbash_command_prefix} $(fc2 1)no help available for '$2'\n\e[m"
+				fi
+			else
+				printf "\n${__pbash_command_prefix} type $(fc2 4)pbash help [command] $(fc2 255)to get more help about a command\n\e[m"
+			fi
 			;;
 		*)
 			# Check if the command file exists

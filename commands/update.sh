@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+__pbash_commands_update_help='usage: pbash update
+
+options:
+ pbash update - check for any updates to powerbash
+environment:
+ CHECK_ONLY="true"/"false" - CHECK_ONLY tells pbash update to only check for updates  
+'
+
 pbash_update() {
 	printf "${__pbash_command_prefix} checking for updates...\n\e"
 	if [[ ! -d "${__pbash_installation_dir}/.git" ]]; then printf "${__pbash_command_prefix} $(fc2 1)powerbash was not installed from a git repository, most likely installed by a package manager. cannot proceed with the upgrade\n\e[m" && return 1; fi
