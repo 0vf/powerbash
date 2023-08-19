@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-__pbash_modules_list+=" git"
 __git_ps1() {
 	if [[ "$__pbash_show_git_info" != "false" ]]; then
 		branch=$(git branch 2>/dev/null | sed 's/*//g')

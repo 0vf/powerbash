@@ -2,10 +2,10 @@
 # Bash theme that looks like powerlevel10k
 # function to get git branch for ps1 (made as an alternative to git-prompt.sh)
 __pbash_installation_dir=$(dirname "${BASH_SOURCE[0]}")
-[ -d "${__pbash_installation_dir}/modules" ] && for file in "${__pbash_installation_dir}/modules"/*; do [ -f "$file" ] && source "$file"; done
-[ -d "${__pbash_installation_dir}/commands" ] && for file in "${__pbash_installation_dir}/commands"/*; do [ -f "$file" ] && source "$file"; done
+[ -d "${__pbash_installation_dir}/modules" ] && for file in "${__pbash_installation_dir}/modules"/*; do [ -f "$file" ] && source "$file";__pbash_core_modules_list+=" $(basename "$file" .sh)"; done
+[ -d "${__pbash_installation_dir}/commands" ] && for file in "${__pbash_installation_dir}/commands"/*; do [ -f "$file" ] && source "$file";__pbash_core_commands_list+=" $(basename "$file" .sh)"; done
 __pbash_command_prefix="$(fc2 6)pbash $(fc2 255)❯" 
-__pbash_current_version="2.1.1"
+__pbash_current_version="2.2.0"
 if [[ "$__pbash_shorten_directory" != "false" ]]; then
 	PROMPT_DIRTRIM=4
 fi
@@ -39,7 +39,7 @@ pbash() {
 	case $1 in
 		help)
 			# List files in the commands/ directory without extensions
-			command_files=$(ls ${__pbash_installation_dir}/commands/*.sh 2>/dev/null)
+			command_files=$(ls ${__pbash_installation_dir}/commands/*.sh && ls ${__pbash_modules_userconfig_path}/commands/*.sh 2>/dev/null)
 			command_names=""
 			for file in $command_files; do
 				command_name=$(basename "$file" .sh)
@@ -59,18 +59,15 @@ pbash() {
 				printf "\n${__pbash_command_prefix} type $(fc2 4)pbash help [command] $(fc2 255)to get more help about a command\n\e[m"
 			fi
 			;;
-		*)
-			# Check if the command file exists
-			command_file="${__pbash_installation_dir}/commands/$1.sh"
-			if [ -f "$command_file" ]; then
-				# Remove the file extension
-				command_name=$(basename "$command_file" .sh)
-				# Execute the command function
-				"pbash_$command_name" ${@:2}
-			else
-				printf "${__pbash_command_prefix} $(fc2 1)invalid command, try pbash help\n\e[m"
-			fi
-			;;
-	esac
+        *)
+            # Check if the command is in the combined command list
+            if [[ " $__pbash_core_commands_list $__pbash_user_commands_list " == *" $1 "* ]]; then
+                # Execute the command function
+                "pbash_$1" ${@:2}
+            else
+                printf "${__pbash_command_prefix} $(fc2 1)invalid command, try pbash help\n\e[m"
+            fi
+            ;;
+    esac
 }
-source $__pbash_configuration_path
+source $__pbash_configuration_path 2>/dev/null
