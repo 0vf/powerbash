@@ -59,15 +59,15 @@ pbash() {
 				printf "\n${__pbash_command_prefix} type $(fc2 4)pbash help [command] $(fc2 255)to get more help about a command\n\e[m"
 			fi
 			;;
-        *)
-            # Check if the command is in the combined command list
-            if [[ " $__pbash_core_commands_list $__pbash_user_commands_list " == *" $1 "* ]]; then
-                # Execute the command function
-                "pbash_$1" ${@:2}
-            else
-                printf "${__pbash_command_prefix} $(fc2 1)invalid command, try pbash help\n\e[m"
-            fi
-            ;;
-    esac
+		*)
+			# Check if the command is in the combined command list
+			if [[ " $__pbash_core_commands_list $__pbash_user_commands_list " == *" $1 "* ]]; then
+				# Execute the command function
+				"pbash_$1" ${@:2}
+			else
+				printf "${__pbash_command_prefix} $(fc2 1)invalid command, try pbash help\n\e[m"
+			fi
+			;;
+	esac
 }
 source $__pbash_configuration_path 2>/dev/null
