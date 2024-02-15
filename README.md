@@ -25,6 +25,15 @@ pbash cfg
 ```
 Then, proceed with the installation wizard.
 
+## Dependencies:
+bash 4.4 or higher
+
+GNU awk (gawk)
+
+BSD or GNU sed
+
+ncurses
+
 # Recommended
 [ble.sh](https://github.com/akinomyoga/ble.sh) | Syntax highlighting, advanced auto completion (if combined with bash-completion) <br />
 [bash-completion](https://github.com/scop/bash-completion) | Advanced and programmable completion for bash
