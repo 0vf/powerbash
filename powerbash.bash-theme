@@ -5,7 +5,7 @@ __pbash_installation_dir=$(dirname "${BASH_SOURCE[0]}")
 [ -d "${__pbash_installation_dir}/modules" ] && for file in "${__pbash_installation_dir}/modules"/*; do [ -f "$file" ] && source "$file";__pbash_core_modules_list+=" $(basename "$file" .sh)"; done
 [ -d "${__pbash_installation_dir}/commands" ] && for file in "${__pbash_installation_dir}/commands"/*; do [ -f "$file" ] && source "$file";__pbash_core_commands_list+=" $(basename "$file" .sh)"; done
 __pbash_command_prefix="$(fc2 6)pbash $(fc2 255)❯" 
-__pbash_current_version="2.2.2"
+__pbash_current_version="2.2.3"
 if [[ "$__pbash_shorten_directory" != "false" ]]; then
 	PROMPT_DIRTRIM=4
 fi
@@ -31,7 +31,7 @@ case "$NAME" in
 	"FreeBSD") export distro_logo="";;
 	"OpenBSD") export distro_logo="";;
 	"Darwin") export distro_logo="";;
-	"Vanilla OS") export distro_logo="";;
+	"Vanilla OS") export distro_logo="";;
 	"NixOS") export distro_logo="";;
 	"ArcoLinux") export distro_logo="";;
 	"Linux Mint") export distro_logo="󰣭";;
