@@ -16,7 +16,7 @@ pbash_update() {
 	# set the branch to main
 	BRANCH="main"
 	# get the hash of the latest commit on the branch
-	LATEST_COMMIT=$(git ls-remote --heads https://github.com/z-ffqq/powerbash.git main | awk '{ print $1 }')
+	LATEST_COMMIT=$(git ls-remote --heads https://github.com/z-ffqq/powerbash.git main | gawk '{ print $1 }')
 	# get the hash of the most recent commit in the local repo
 	CURRENT_COMMIT=$(git log --pretty=format:"%H" -n 1)
 	# check if the hashes are the same
